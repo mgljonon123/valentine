@@ -4,7 +4,6 @@ import styles from "./styles/Romance.module.css";
 import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [yesButtonSize, setYesButtonSize] = useState(1);
   const [now, setNow] = useState(new Date());
   const [showLove, setShowLove] = useState(false);
   const [noBtnPos, setNoBtnPos] = useState({ top: 50, left: 50 });
