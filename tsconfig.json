@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["node", "@types/canvas-confetti"],
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
