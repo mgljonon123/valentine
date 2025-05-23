@@ -75,7 +75,7 @@ export default function Home() {
                 position: "relative",
               }}
             >
-              💖 Happy Birthday! 💖
+              💖 Will you date me! 💖
               <br />
               <span
                 style={{
@@ -114,7 +114,7 @@ export default function Home() {
           priority
         />
         <h2 className={styles.question}>
-          Will you <span>Date me?</span>
+          Happy Birth <span>Day!</span>
         </h2>
         <div className={styles.buttons}>
           <button className={styles.yes} onClick={() => setShowLove(true)}>
