@@ -75,7 +75,7 @@ export default function Home() {
                 position: "relative",
               }}
             >
-              💖 I love you! 💖
+              💖 Happy Birthday! 💖
               <br />
               <span
                 style={{
