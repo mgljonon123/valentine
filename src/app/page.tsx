@@ -2,123 +2,78 @@
 import Image from "next/image";
 import styles from "./styles/Romance.module.css";
 import { useState, useEffect } from "react";
+import confetti from "canvas-confetti";
 
 export default function Home() {
   const [now, setNow] = useState(new Date());
   const [showLove, setShowLove] = useState(false);
-  const [noBtnPos, setNoBtnPos] = useState({ top: 50, left: 50 });
 
   useEffect(() => {
     const interval = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
 
-  const handleNoClick = () => {
-    const vh = window.innerHeight;
-    const vw = window.innerWidth;
-    const btnHeight = 48; // approximate button height
-    const btnWidth = 100; // approximate button width
-    const top = Math.random() * (vh - btnHeight);
-    const left = Math.random() * (vw - btnWidth);
-    setNoBtnPos({ top, left });
+  const handleThankYouClick = () => {
+    setShowLove(true);
+    // Trigger confetti animation
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ["#ff0000", "#ff69b4", "#ffd700", "#00ff00", "#00b7eb"],
+    });
   };
 
   return (
     <div
-      className={styles.container}
-      style={{ position: "relative", minHeight: "100vh" }}
+      className={`${styles.container} bg-gradient-to-br from-pink-100 to-purple-100 flex items-center justify-center min-h-screen p-4`}
     >
-      <button
-        className={styles.no}
-        onClick={handleNoClick}
-        style={{
-          position: "absolute",
-          top: noBtnPos.top,
-          left: noBtnPos.left,
-          transition: "top 0.3s, left 0.3s",
-          zIndex: 2000,
-        }}
+      <div
+        className={`${styles.card} bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full transform transition-all hover:scale-105`}
       >
-        No
-      </button>
-      <div className={styles.card}>
-        <div
-          style={{ marginBottom: "1rem", fontWeight: "bold", color: "#555" }}
-        >
+        <div className="text-center text-gray-600 font-semibold mb-4">
           {now.toLocaleString()}
         </div>
         {showLove && (
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              background: "rgba(0,0,0,0.5)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 1000,
-            }}
-          >
-            <div
-              style={{
-                background: "white",
-                borderRadius: "24px",
-                padding: "2rem 3rem",
-                textAlign: "center",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.2)",
-                color: "#d72660",
-                fontSize: "2rem",
-                fontWeight: "bold",
-                position: "relative",
-              }}
-            >
-              💖 Will you date me! 💖
-              <br />
-              <span
-                style={{
-                  fontSize: "1.2rem",
-                  color: "#555",
-                  fontWeight: "normal",
-                }}
-              >
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-3xl p-8 text-center shadow-2xl max-w-sm w-full animate-bounce-in">
+              <h2 className="text-3xl font-bold text-pink-600 mb-2">
+                🎉 Happy Birthday! 🎉
+              </h2>
+              <p className="text-xl font-bold text-pink-600 mb-4">
+                💖 Will you date me! 💖
+              </p>
+              <p className="text-gray-600 text-lg">
                 You make my heart skip a beat!
-              </span>
+              </p>
               <button
                 onClick={() => setShowLove(false)}
-                style={{
-                  marginTop: "2rem",
-                  background: "#d72660",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "8px",
-                  padding: "0.5rem 2rem",
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                }}
+                className="mt-6 bg-pink-500 text-white rounded-lg px-6 py-2 font-semibold hover:bg-pink-600 transition-colors shadow-md"
               >
                 Close
               </button>
             </div>
           </div>
         )}
-        <Image
-          src="/494860477_1587470365251878_7451835860150161203_n.jpg"
-          alt="Hello Kitty couple with hearts"
-          className={styles.image}
-          width={200}
-          height={200}
-          priority
-        />
-        <h2 className={styles.question}>
-          Happy Birth <span>Day!</span>
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/494860477_1587470365251878_7451835860150161203_n.jpg"
+            alt="Hello Kitty couple with hearts"
+            className={`${styles.image} rounded-full shadow-md`}
+            width={200}
+            height={200}
+            priority
+          />
+        </div>
+        <h2 className="text-4xl font-bold text-center text-pink-600 mb-6">
+          Happy Birth <span className="text-purple-600">Day!</span>
         </h2>
-        <div className={styles.buttons}>
-          <button className={styles.yes} onClick={() => setShowLove(true)}>
-            Yes
+        <div className="flex justify-center">
+          <button
+            className="bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg px-8 py-3 font-semibold text-lg hover:from-pink-600 hover:to-purple-600 transition-all shadow-lg"
+            onClick={handleThankYouClick}
+          >
+            Thank you!
           </button>
         </div>
       </div>
